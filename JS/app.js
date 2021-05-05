@@ -101,8 +101,8 @@ fetch("/Json.json")
         displayCreatorGallery(dataCreatorGallery);
       });
     }
-  })
-  .catch((err) => console.log(err));
+  });
+//.catch((err) => console.log(err));
 
 /* INDEX.HTML */
 
