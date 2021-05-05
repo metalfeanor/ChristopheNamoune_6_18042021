@@ -1,19 +1,20 @@
 {
-  "name": "new_project",
+  "name": "fisheye_project",
   "version": "1.0.0",
-  "description": "base folder and docs for HTML Css Sass website",
-  "main": "index.js",
+  "description": "accessible website",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/metalfeanor/new_project.git"
+    "url": "git+https://github.com/metalfeanor/ChristopheNamoune_6_18042021.git"
   },
   "author": "C.Namoune @metalfeanor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/metalfeanor/new_project/issues"
+    "url": "https://github.com/metalfeanor/ChristopheNamoune_6_18042021/issues"
   },
-  "homepage": "https://github.com/metalfeanor/new_project#readme"
+  "homepage": "https://github.com/metalfeanor/ChristopheNamoune_6_18042021#readme",
+  "browserslist": "last 4 versions"
 }

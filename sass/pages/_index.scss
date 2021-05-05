@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.creators {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.card {
+  padding: 0 3em;
+  font-weight: 400;
+  @include column-center;
+  & > a {
+    text-decoration: none;
+  }
+  &-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > img {
+      @include img-css;
+    }
+    &-title {
+      font-size: 36px;
+      line-height: 2;
+      color: $color-secondary;
+    }
+  }
+  &-body {
+    @include column-center;
+    &-city {
+      color: $color-primary;
+      font-size: 13px;
+    }
+    &-tagline {
+      color: black;
+      font-size: 10px;
+    }
+    &-price {
+      font-size: 9px;
+      color: #757575;
+    }
+  }
+  &-tags {
+    display: flex;
+    padding: 0.7em 0;
+  }
+}
+
+.tag {
+  list-style: none;
+  margin-left: 0.5em;
+  & > button {
+    &::before {
+      content: "#";
+    }
+    &:hover,
+    .selected {
+      background-color: $color-primary;
+      color: white;
+    }
+  }
+}
+
+.selected {
+  background-color: $color-primary;
+  color: white;
+}

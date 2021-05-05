@@ -1,0 +1,119 @@
+.photographer-page {
+  @media screen and (min-width: 600px) {
+    padding: 0 100px;
+  }
+}
+
+.ph {
+  &-header {
+    display: flex;
+    padding: 3%;
+    & > img {
+      @include img-css;
+      margin-left: auto;
+    }
+  }
+  &-contact {
+    @include btnType1;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  &-name {
+    color: $color-secondary;
+    font-size: 64px;
+    font-weight: 400;
+  }
+  &-city {
+    color: $color-primary;
+    font-size: 24px;
+    font-weight: 400;
+  }
+  &-tagline {
+    color: $tagline-color;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  &-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+.works-elts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 45px 0;
+  padding: 0 20px;
+
+  @media (min-width: 1200px) {
+    margin: 45px 100px;
+    padding: 0;
+  }
+
+  @media (min-width: 1440px) {
+    justify-content: space-between;
+  }
+}
+
+.work-elt {
+  color: $color-primary;
+  font-size: 1.1em;
+  font-weight: 500;
+  width: 335px;
+  margin: 0 0 10px 0;
+
+  @media (min-width: 710px) {
+    margin: 0 5px 10px 5px;
+  }
+
+  @media (min-width: 1300px) {
+    width: 350px;
+  }
+
+  h2 {
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+  a {
+    color: $color-primary;
+  }
+
+  img,
+  video {
+    width: 335px;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 5px;
+
+    @media (min-width: 1300px) {
+      width: 350px;
+      height: 300px;
+    }
+  }
+
+  img:hover,
+  video:hover {
+    cursor: pointer;
+  }
+
+  &-infos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  .work-title {
+    width: 225px;
+  }
+
+  .fa-heart {
+    margin-left: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

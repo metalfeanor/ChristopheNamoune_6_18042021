@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  &-svg:hover path {
+    fill: $color-secondary;
+  }
+  &-navigation {
+    & ul {
+      align-items: center;
+      display: flex;
+      & button {
+        text-transform: capitalize;
+      }
+    }
+    & > button {
+      &::before {
+        content: "#";
+      }
+      &:hover,
+      .selected {
+        border-color: $color-primary;
+        background-color: $color-primary;
+        color: white;
+      }
+    }
+  }
+}
