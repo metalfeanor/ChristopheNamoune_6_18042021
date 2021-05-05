@@ -10,7 +10,7 @@ fetch("https://metalfeanor.github.io/ChristopheNamoune_6_18042021/Json.json")
     allDataList = [data];
     dataBase = data;
 
-    if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
+    if (window.location.pathname === "/ChristopheNamoune_6_18042021/index.html" || window.location.pathname === "/ChristopheNamoune_6_18042021/") {
       displayAllCreatorItems();
     }
 
