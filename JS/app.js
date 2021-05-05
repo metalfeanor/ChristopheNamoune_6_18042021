@@ -1,6 +1,7 @@
 const url = `/public/img/portrait/mini/`;
 let activeTags = [];
 let dataBase = undefined;
+console.log(window.location.pathname);
 
 fetch("https://metalfeanor.github.io/ChristopheNamoune_6_18042021/Json.json")
   .then((res) => res.json())
