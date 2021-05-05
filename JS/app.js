@@ -1,20 +1,21 @@
-const url = `https://metalfeanor.github.io/ChristopheNamoune_6_18042021/public/img/portrait/mini/`;
+const url = `/public/img/portrait/mini/`;
+const urlGithub = `/ChristopheNamoune_6_18042021`;
+//const urlGithub = ``;
 let activeTags = [];
 let dataBase = undefined;
-console.log(window.location.pathname);
 
-fetch("https://metalfeanor.github.io/ChristopheNamoune_6_18042021/Json.json")
+fetch("/Json.json")
   .then((res) => res.json())
   .then((data) => {
     creatorList = data.photographers;
     allDataList = [data];
     dataBase = data;
 
-    if (window.location.pathname === "/ChristopheNamoune_6_18042021/index.html" || window.location.pathname === "/ChristopheNamoune_6_18042021/") {
+    if (window.location.pathname === `${urlGithub}/index.html` || window.location.pathname === `${urlGithub}/`) {
       displayAllCreatorItems();
     }
 
-    if (window.location.pathname === "/photographer-page.html") {
+    if (window.location.pathname === `${urlGithub}/photographer-page.html`) {
       const id = parseInt(window.location.search.replace("?id=", ""));
       //console.log(id, dataBase);
 
@@ -114,7 +115,7 @@ function displayAllCreatorItems() {
     .map((photographer) => {
       document.querySelector(".creators").innerHTML += `<div class="card">
     <a href="photographer-page.html?id=${photographer.id}" class="card-img">
-      <img src="${url}${photographer.portrait}" alt="">
+      <img src="${urlGithub}${url}${photographer.portrait}" alt="">
             <h2 class="card-img-title">${photographer.name}</h2>
         </a>
         <div class="card-body">
@@ -186,7 +187,7 @@ function displayCreatorCard(data) {
           </ul>
         </div>
         <button type="button" class="ph-contact" id="ph-contact" title="Contact Me">Contactez-moi</button>
-        <img src="${url}${data.portrait}" alt="" id="ph-portrait" />
+        <img src="${urlGithub}${url}${data.portrait}" alt="" id="ph-portrait" />
       </header>
       <section class="ph-works" aria-label="photographer works">
         <div class="works-sort">
@@ -227,7 +228,7 @@ class ImageMedia {
   display() {
     return `<div class="work-elt">
     <a href="#" title="${this.title}, closeup view">
-      <img src="https://metalfeanor.github.io/ChristopheNamoune_6_18042021/public/data/image/mini/${this.src}" alt="${this.title}, closeup view" role="button">
+      <img src="${urlGithub}/public/data/image/mini/${this.src}" alt="${this.title}, closeup view" role="button">
     </a>
     <div class="work-elt-infos">
       <h2 class="work-title">${this.title}</h2>
@@ -251,7 +252,7 @@ class VideoMedia {
     return `<div class="work-elt">
     <a href="#" title="${this.title}, closeup view">
       <video class="video-elt" role="button">${this.title}, closeup view
-        <source src="https://metalfeanor.github.io/ChristopheNamoune_6_18042021/public/data/video/${this.src}"></video>
+        <source src="${urlGithub}/public/data/video/${this.src}"></video>
     </a>
     <div class="work-elt-infos">
       <h2 class="work-title">${this.title}</h2>
