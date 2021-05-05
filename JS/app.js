@@ -1,4 +1,4 @@
-const url = `/public/img/portrait/mini/`;
+const url = `https://metalfeanor.github.io/ChristopheNamoune_6_18042021/public/img/portrait/mini/`;
 let activeTags = [];
 let dataBase = undefined;
 console.log(window.location.pathname);
@@ -227,7 +227,7 @@ class ImageMedia {
   display() {
     return `<div class="work-elt">
     <a href="#" title="${this.title}, closeup view">
-      <img src="public/data/image/mini/${this.src}" alt="${this.title}, closeup view" role="button">
+      <img src="https://metalfeanor.github.io/ChristopheNamoune_6_18042021/public/data/image/mini/${this.src}" alt="${this.title}, closeup view" role="button">
     </a>
     <div class="work-elt-infos">
       <h2 class="work-title">${this.title}</h2>
@@ -251,7 +251,7 @@ class VideoMedia {
     return `<div class="work-elt">
     <a href="#" title="${this.title}, closeup view">
       <video class="video-elt" role="button">${this.title}, closeup view
-        <source src="public/data/video/${this.src}"></video>
+        <source src="https://metalfeanor.github.io/ChristopheNamoune_6_18042021/public/data/video/${this.src}"></video>
     </a>
     <div class="work-elt-infos">
       <h2 class="work-title">${this.title}</h2>
