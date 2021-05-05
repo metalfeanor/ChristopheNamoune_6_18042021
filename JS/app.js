@@ -2,7 +2,7 @@ const url = `/public/img/portrait/mini/`;
 let activeTags = [];
 let dataBase = undefined;
 
-fetch("../Json.json")
+fetch("https://metalfeanor.github.io/ChristopheNamoune_6_18042021/Json.json")
   .then((res) => res.json())
   .then((data) => {
     creatorList = data.photographers;
