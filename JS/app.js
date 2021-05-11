@@ -674,7 +674,7 @@ function RenderPhotographerWorkOverview() {
  *
  **********************************************************/
 
-fetch("/Json.json")
+fetch(`${urlGithub}/Json.json`)
   .then((res) => res.json())
   .then((data) => {
     dataBase = data;
