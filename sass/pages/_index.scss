@@ -1,20 +1,52 @@
-.main {
-  display: flex;
-  flex-flow: row wrap;
+.nav-link {
+  @include btnTypeNav;
+  text-decoration: none;
+  position: fixed;
+  top: -200px;
+  padding-top: 4px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+}
+
+.main h1 {
+  position: absolute;
+  top: 3.9em;
+  right: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  @media (min-width: 990px) {
+    font-size: 25px;
+    top: 2.1em;
+    right: 100px;
+  }
+  @media (min-width: 1300px) {
+    font-size: 36px;
+    top: 1.2em;
+  }
 }
 
 .creators {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 990px) {
+    padding: 80px 0;
+  }
 }
 
 .card {
-  padding: 0 3em;
-  font-weight: 400;
   @include column-center;
+  min-width: 350px;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 3em;
   & > a {
     text-decoration: none;
+  }
+  @media (min-width: 990px) {
+    width: 30%;
   }
   &-img {
     display: flex;
@@ -31,6 +63,9 @@
   }
   &-body {
     @include column-center;
+    :nth-child(n) {
+      padding: 2px 0;
+    }
     &-city {
       color: $color-primary;
       font-size: 13px;
@@ -46,7 +81,11 @@
   }
   &-tags {
     display: flex;
+    flex-wrap: wrap;
     padding: 0.7em 0;
+    & li {
+      margin: 4px 4px 0 0;
+    }
   }
 }
 

@@ -7,6 +7,7 @@
   width: 100vw;
   max-width: 1250px;
   height: 100vh;
+  z-index: 2;
   display: none;
 
   &-media {
@@ -17,6 +18,7 @@
     display: flex;
     justify-content: center;
     color: $color-primary;
+    min-height: 200px;
   }
 
   h3 {
@@ -66,7 +68,8 @@
 
   &-close {
     right: 15px;
-    top: 0;
+    top: 3%;
+    z-index: 5;
 
     @media (min-width: 800px) {
       right: 30px;
@@ -75,6 +78,7 @@
 
   &-left {
     left: 15px;
+    height: 100vh;
 
     @media (min-width: 800px) {
       left: 30px;
@@ -83,6 +87,7 @@
 
   &-right {
     right: 15px;
+    height: 100vh;
 
     @media (min-width: 800px) {
       right: 30px;
@@ -96,6 +101,7 @@
     width: 100%;
     height: 100%;
     background: #fff;
+    z-index: 1;
     display: none;
   }
 }

@@ -5,22 +5,41 @@
 }
 
 @mixin img-css {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   object-fit: cover;
   border-radius: 50%;
+  @media (min-width: 990px) {
+    height: 200px;
+    width: 200px;
+  }
 }
 
 @mixin btnType1 {
   background-color: $color-primary;
   color: white;
   width: 170px;
-  height: 69px;
   font-weight: 700;
   &:hover,
   :focus {
     cursor: pointer;
     background-color: $form-color;
     color: black;
+  }
+}
+
+@mixin btnTypeNav {
+  background-color: $form-color;
+  color: black;
+  width: 182px;
+  height: 30px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 5px;
+  &:hover,
+  :focus {
+    cursor: pointer;
+    background-color: $color-primary;
+    color: white;
   }
 }
