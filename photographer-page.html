@@ -64,7 +64,7 @@
 
   <!-- FORM -->
       <div class="overlay" id="overlay" aria-hidden="true"></div>
-      <div role="dialog" class="form-dialog" id="form-dialog" aria-label="contact me form" aria-labelledby="form-title" aria-hidden="true">
+      <div role="dialog" class="form-dialog" id="form-body" aria-label="contact me form" aria-labelledby="form-title" aria-hidden="true">
         <form method="GET" onsubmit="return validate(event);" class="contact-form" id="contact-form">
           <header aria-label="contact form header">
             <h1 id="form-title">
@@ -96,16 +96,16 @@
       <div class="lightbox" id="lightbox" aria-hidden="true">
         <div class="lightbox-media">
           <div id="lightbox-content"></div>
-          <button type="button" class="lightbox-close" id="lightbox-close" title="Close dialog">
+        </div>
+        <button type="button" class="lightbox-close" id="lightbox-close" title="Close dialog">
             <span class="fas fa-times" aria-hidden="true"></span>
           </button>
-          <button type="button" class="lightbox-nav lightbox-left" id="lightbox-previous" title="Previous image">
+          <button type="button" class="lightbox-nav lightbox-left" id="lightbox-prev" title="Previous image">
             <span class="fas fa-chevron-left" aria-hidden="true"></span>
           </button>
           <button type="button" class="lightbox-nav lightbox-right" id="lightbox-next" title="Next image">
             <span class="fas fa-chevron-right" aria-hidden="true"></span>
           </button>
-        </div>
       </div>
     </main>
 

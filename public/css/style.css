@@ -6,6 +6,7 @@
 
 body {
   font-family: "DM Sans", sans-serif;
+  position: relative;
 }
 
 h1 {
@@ -61,6 +62,7 @@ button {
   width: 100%;
   height: 100%;
   background: rgba(196, 196, 196, 0.4);
+  z-index: 2;
   display: none;
 }
 
@@ -74,7 +76,7 @@ button {
   min-width: 300px;
   width: 100%;
   max-width: 670px;
-  z-index: 2;
+  z-index: 3;
 }
 @media (min-width: 600px) {
   .form-dialog {
@@ -136,9 +138,9 @@ button {
   background-color: #911c1c;
   color: white;
   width: 170px;
-  height: 69px;
   font-weight: 700;
   margin-top: 25px;
+  height: 69px;
 }
 .form-submit:hover,
 .form-submit :focus {
@@ -170,8 +172,13 @@ button {
 }
 
 .works-sort {
-  display: block;
+  display: none;
   position: relative;
+}
+@media (min-width: 990px) {
+  .works-sort {
+    display: block;
+  }
 }
 
 .sort-wrapper {
@@ -194,7 +201,6 @@ button {
   background-color: #911c1c;
   color: white;
   width: 170px;
-  height: 69px;
   font-weight: 700;
   height: 50px;
   margin-left: 25px;
@@ -235,7 +241,7 @@ button {
 .sort-list > li:nth-child(2) {
   background: linear-gradient(currentColor 0 0) bottom/var(--d, 80%) 2px no-repeat;
 }
-.sort-list > li:hover {
+.sort-list > li:hover, .sort-list > li:focus {
   background-color: #db8876;
   color: black;
 }
@@ -249,6 +255,7 @@ button {
   width: 100vw;
   max-width: 1250px;
   height: 100vh;
+  z-index: 2;
   display: none;
 }
 .lightbox-media {
@@ -259,6 +266,7 @@ button {
   display: flex;
   justify-content: center;
   color: #911c1c;
+  min-height: 200px;
 }
 .lightbox h3 {
   font-weight: 400;
@@ -308,7 +316,8 @@ button {
 }
 .lightbox-close {
   right: 15px;
-  top: 0;
+  top: 3%;
+  z-index: 5;
 }
 @media (min-width: 800px) {
   .lightbox-close {
@@ -317,6 +326,7 @@ button {
 }
 .lightbox-left {
   left: 15px;
+  height: 100vh;
 }
 @media (min-width: 800px) {
   .lightbox-left {
@@ -325,6 +335,7 @@ button {
 }
 .lightbox-right {
   right: 15px;
+  height: 100vh;
 }
 @media (min-width: 800px) {
   .lightbox-right {
@@ -338,19 +349,55 @@ button {
   width: 100%;
   height: 100%;
   background: #fff;
+  z-index: 1;
   display: none;
 }
 
 .header {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding: 40px 20px 20px 20px;
+}
+@media (min-width: 990px) {
+  .header {
+    align-items: center;
+    flex-direction: row;
+    padding: 40px 100px;
+  }
 }
 .header-svg:hover path {
   fill: #d3573c;
 }
+.header svg {
+  width: 150px;
+}
+@media (min-width: 990px) {
+  .header svg {
+    width: 200px;
+  }
+}
+.header-navigation {
+  margin: 20px 0;
+}
+@media (min-width: 990px) {
+  .header-navigation {
+    margin: 0 215px 0 0;
+  }
+}
+@media (min-width: 1200px) {
+  .header-navigation {
+    margin: 0 0 0 30px;
+  }
+}
+@media (min-width: 1600px) {
+  .header-navigation {
+    margin: 0 0 0 80px;
+  }
+}
 .header-navigation ul {
-  align-items: center;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .header-navigation ul button {
   text-transform: capitalize;
@@ -368,26 +415,78 @@ button {
 /*@import "./layout/nav";
 @import "./layout/container";
 @import "./layout/form";*/
-.main {
-  display: flex;
-  flex-flow: row wrap;
+.nav-link {
+  background-color: #db8876;
+  color: black;
+  width: 182px;
+  height: 30px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  position: fixed;
+  top: -200px;
+  padding-top: 4px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+}
+.nav-link:hover,
+.nav-link :focus {
+  cursor: pointer;
+  background-color: #911c1c;
+  color: white;
+}
+
+.main h1 {
+  position: absolute;
+  top: 3.9em;
+  right: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+@media (min-width: 990px) {
+  .main h1 {
+    font-size: 25px;
+    top: 2.1em;
+    right: 100px;
+  }
+}
+@media (min-width: 1300px) {
+  .main h1 {
+    font-size: 36px;
+    top: 1.2em;
+  }
 }
 
 .creators {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 990px) {
+  .creators {
+    padding: 80px 0;
+  }
 }
 
 .card {
-  padding: 0 3em;
-  font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 350px;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 3em;
 }
 .card > a {
   text-decoration: none;
+}
+@media (min-width: 990px) {
+  .card {
+    width: 30%;
+  }
 }
 .card-img {
   display: flex;
@@ -395,10 +494,16 @@ button {
   align-items: center;
 }
 .card-img > img {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   object-fit: cover;
   border-radius: 50%;
+}
+@media (min-width: 990px) {
+  .card-img > img {
+    height: 200px;
+    width: 200px;
+  }
 }
 .card-img-title {
   font-size: 36px;
@@ -409,6 +514,9 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.card-body :nth-child(n) {
+  padding: 2px 0;
 }
 .card-body-city {
   color: #911c1c;
@@ -424,7 +532,11 @@ button {
 }
 .card-tags {
   display: flex;
+  flex-wrap: wrap;
   padding: 0.7em 0;
+}
+.card-tags li {
+  margin: 4px 4px 0 0;
 }
 
 .tag {
@@ -447,29 +559,48 @@ button {
 
 @media screen and (min-width: 600px) {
   .photographer-page {
-    padding: 0 100px;
+    padding: 0 10%;
   }
 }
 
 .ph-header {
   display: flex;
   padding: 3%;
+  position: relative;
+  margin: 0 1% 0 2%;
+}
+@media (min-width: 600px) {
+  .ph-header {
+    margin: 0;
+  }
 }
 .ph-header > img {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   object-fit: cover;
   border-radius: 50%;
   margin-left: auto;
+}
+@media (min-width: 990px) {
+  .ph-header > img {
+    height: 200px;
+    width: 200px;
+  }
 }
 .ph-contact {
   background-color: #911c1c;
   color: white;
   width: 170px;
-  height: 69px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1em;
   margin-left: 20px;
+  position: fixed;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-60%);
+  bottom: 2em;
+  border: none;
+  height: 40px;
 }
 .ph-contact:hover,
 .ph-contact :focus {
@@ -477,37 +608,99 @@ button {
   background-color: #db8876;
   color: black;
 }
+@media (min-width: 990px) {
+  .ph-contact {
+    font-size: 20px;
+    position: absolute;
+    height: 56px;
+    top: 20%;
+    left: 52%;
+  }
+}
+@media (min-width: 1300px) {
+  .ph-contact {
+    left: 45%;
+    height: 69px;
+  }
+}
 .ph-name {
   color: #d3573c;
-  font-size: 64px;
+  font-size: 36px;
   font-weight: 400;
+  max-width: 344px;
+}
+@media (min-width: 600px) {
+  .ph-name {
+    font-size: 46px;
+  }
+}
+@media (min-width: 1300px) {
+  .ph-name {
+    font-size: 64px;
+    max-width: 400px;
+  }
 }
 .ph-city {
   color: #911c1c;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
+}
+@media (min-width: 600px) {
+  .ph-city {
+    font-size: 24px;
+  }
 }
 .ph-tagline {
   color: #525252;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 400;
+}
+@media (min-width: 600px) {
+  .ph-tagline {
+    font-size: 18px;
+  }
 }
 .ph-infos {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
+.ph-data {
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: -10px;
+  right: 5%;
+  background-color: #db8876;
+  color: black;
+  width: 376px;
+  height: 70px;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+}
+.ph-data > span > i {
+  margin-left: 10px;
+}
+@media (min-width: 990px) {
+  .ph-data {
+    display: flex;
+  }
+}
 
 .works-elts {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 45px 0;
+  margin: 50px 0;
   padding: 0 20px;
 }
 @media (min-width: 1200px) {
   .works-elts {
-    margin: 45px 100px;
+    margin: 50px 100px;
     padding: 0;
   }
 }
