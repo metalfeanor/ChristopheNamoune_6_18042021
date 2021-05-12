@@ -1,17 +1,18 @@
 .photographer-page {
   @media screen and (min-width: 600px) {
-    padding: 0 10%;
+    //padding: 0 10%;
   }
 }
 
 .ph {
   &-header {
     display: flex;
-    padding: 3%;
+    padding: 2%;
     position: relative;
     margin: 0 1% 0 2%;
     @media (min-width: 600px) {
       margin: 0;
+      padding: 3% 8% 3% 9%;
     }
     & > img {
       @include img-css;

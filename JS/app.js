@@ -6,6 +6,7 @@ const urlGithubPath = `/ChristopheNamoune_6_18042021`;
 //const urlGithubPath = ``;
 
 let activeTags = [];
+let originalLikesFromJson = [];
 let dataBase = undefined;
 let dataCreatorGallery;
 
@@ -165,6 +166,7 @@ class ImageMedia {
   }
 
   display() {
+    const originalWorkEltLikes = originalLikesFromJson.filter((workElt) => workElt.id === this.id);
     return `<div class="work-elt">
     <a href="#" title="${this.title}, closeup view" onclick="toggleLightbox(event)">
       <img src="${urlGithub}/public/data/image/mini/${this.src}" alt="${this.title}, closeup view" role="button" data-id="${this.id}">
@@ -172,7 +174,9 @@ class ImageMedia {
     <div class="work-elt-infos">
       <h2 class="work-title">${this.title}</h2>
       <span class="work-price">${this.price} €</span>
-      <span class="work-like" id="${this.id}">${this.likes}<span class="fas fa-heart" aria-label="likes" role="button" tabindex="0"></span></span>
+      <span class="work-like" id="${this.id}">${this.likes}<span class="${
+      this.likes > originalWorkEltLikes[0].likes ? "fas fa-heart" : "far fa-heart"
+    }" aria-label="likes" role="button" tabindex="0"></span></span>
     </div>`;
   }
   displayLightbox() {
@@ -192,6 +196,7 @@ class VideoMedia {
   }
 
   display() {
+    const originalWorkEltLikes = originalLikesFromJson.filter((workElt) => workElt.id === this.id);
     return `<div class="work-elt">
     <a href="#" title="${this.title}, closeup view" onclick="toggleLightbox(event)">
       <video class="video-elt" role="button" data-id="${this.id}">${this.title}, closeup view
@@ -200,7 +205,9 @@ class VideoMedia {
     <div class="work-elt-infos">
       <h2 class="work-title">${this.title}</h2>
       <span class="work-price">${this.price} €</span>
-      <span class="work-like" id="${this.id}">${this.likes}<span class="fas fa-heart" aria-label="likes" role="button" tabindex="0"></span></span>
+      <span class="work-like" id="${this.id}">${this.likes}<span class="${
+      this.likes > originalWorkEltLikes[0].likes ? "fas fa-heart" : "far fa-heart"
+    }" aria-label="likes" role="button" tabindex="0"></span></span>
     </div>
     </div>`;
   }
@@ -294,12 +301,58 @@ function validate(e) {
 }
 
 /**********************************************************
+ *    Functions for sorting photographer work element
+ **********************************************************/
+function deleteGallery() {
+  document.querySelector(".works-elts").innerHTML = "";
+}
+
+function hideSortList() {
+  $dropdownMenu.style.display = "none";
+  $dropdownLink.style.display = "flex";
+  $dropdownLink.setAttribute("aria-expanded", "false");
+}
+
+function sortByLikes() {
+  dataCreatorGallery.sort((a, b) => b.likes - a.likes);
+  displayCreatorGallery(dataCreatorGallery);
+}
+
+function sortByDate() {
+  dataCreatorGallery.sort((a, b) => new Date(b.date) - new Date(a.date));
+  displayCreatorGallery(dataCreatorGallery);
+}
+
+function sortByTitle() {
+  dataCreatorGallery.sort((a, b) => a.title.localeCompare(b.title));
+  displayCreatorGallery(dataCreatorGallery);
+}
+
+function modifyDropdownBtnTitle(title) {
+  $dropdownLink.innerHTML = `${title}<span class="fas fa-chevron-down sort-arrow"></span>`;
+}
+
+function toggleSortingMenu() {
+  if (!$dropdownMenu.getAttribute("style") || $dropdownMenu.getAttribute("style") === "display: none;") {
+    $dropdownMenu.style.display = "block";
+    $dropdownLink.setAttribute("aria-expanded", "true");
+    $popularitySortLi.focus();
+    //use keyboard to move into Menu
+    $dropdownMenu.addEventListener("keydown", keyboardNav);
+    $dropdownLink.style.display = "none";
+  } else {
+    $dropdownMenu.style.display = "none";
+    $dropdownLink.setAttribute("aria-expanded", "false");
+  }
+}
+
+/**********************************************************
  *          Keyboard navigation on Sort Menu
  **********************************************************/
 
 const keyboardNav = (e) => {
   const activeElt = document.activeElement;
-  //const blurKeys = e.key === "Escape" || e.key === "Esc" || (e.key === "Shift" && e.key === "Tab");
+  const totalLikes = document.getElementById("total-likes");
 
   if (e.key === "ArrowDown" || e.key === "Down") {
     e.preventDefault();
@@ -319,12 +372,27 @@ const keyboardNav = (e) => {
     deleteGallery();
     if (activeElt === $popularitySortLi) {
       sortByLikes();
+      //modify title into dropdownBtn
+      modifyDropdownBtnTitle("Popularité");
+      //modify likes after sorting
+      updateTotalLikes(totalLikes);
+      listeningHeartPress(totalLikes);
     }
     if (activeElt === $dateSortLi) {
       sortByDate();
+      //modify title into dropdownBtn
+      modifyDropdownBtnTitle("Date");
+      //modify likes after sorting
+      updateTotalLikes(totalLikes);
+      listeningHeartPress(totalLikes);
     }
     if (activeElt === $titleSortLI) {
       sortByTitle();
+      //modify title into dropdownBtn
+      modifyDropdownBtnTitle("Titre");
+      //modify likes after sorting
+      updateTotalLikes(totalLikes);
+      listeningHeartPress(totalLikes);
     }
     $dropdownLink.focus();
   }
@@ -335,48 +403,6 @@ const keyboardNav = (e) => {
     $dropdownLink.focus();
   }
 };
-
-/**********************************************************
- *    Functions for sorting photographer work element
- **********************************************************/
-function deleteGallery() {
-  document.querySelector(".works-elts").innerHTML = "";
-}
-
-function hideSortList() {
-  $dropdownMenu.style.display = "none";
-  $dropdownLink.style.display = "block";
-  $dropdownLink.setAttribute("aria-expanded", "false");
-}
-
-function sortByLikes() {
-  dataCreatorGallery.sort((a, b) => b.likes - a.likes);
-  displayCreatorGallery(dataCreatorGallery);
-}
-
-function sortByDate() {
-  dataCreatorGallery.sort((a, b) => new Date(b.date) - new Date(a.date));
-  displayCreatorGallery(dataCreatorGallery);
-}
-
-function sortByTitle() {
-  dataCreatorGallery.sort((a, b) => a.title.localeCompare(b.title));
-  displayCreatorGallery(dataCreatorGallery);
-}
-
-function toggleSortingMenu() {
-  if (!$dropdownMenu.getAttribute("style") || $dropdownMenu.getAttribute("style") === "display: none;") {
-    $dropdownMenu.style.display = "block";
-    $dropdownLink.setAttribute("aria-expanded", "true");
-    $popularitySortLi.focus();
-    //use keyboard to move into Menu
-    $dropdownMenu.addEventListener("keydown", keyboardNav);
-    $dropdownLink.style.display = "none";
-  } else {
-    $dropdownMenu.style.display = "none";
-    $dropdownLink.setAttribute("aria-expanded", "false");
-  }
-}
 
 /**********************************************************
  *          Keyboard navigation on Work Elements Section
@@ -530,8 +556,42 @@ function updateTotalLikes(totalLikes) {
   $heartLink.forEach((item) => {
     numberOfTotalLikes += parseInt(item.parentElement.innerText);
   });
-  totalLikes.innerHTML = numberOfTotalLikes + '<i class="fas fa-heart" aria-label="likes"></i>';
+  totalLikes.childNodes[0].nodeValue = numberOfTotalLikes;
+  //totalLikes.innerHTML = numberOfTotalLikes + '<i class="fas fa-heart" aria-label="likes"></i>';
 }
+
+/**********************************************************
+ *    Function to increment Likes
+ **********************************************************/
+
+function incrementLikes(e, totalLikes) {
+  //get id of work element
+  const id = parseInt(e.target.parentElement.id);
+  const currentWorkElt = dataCreatorGallery.filter((workElt) => workElt.id === id);
+  const originalWorkEltLikes = originalLikesFromJson.filter((workElt) => workElt.id === id);
+  //get DOM element by id
+  const likeId = document.getElementById(id);
+  //console.log(currentWorkElt[0].likes, originalWorkEltLikes[0].likes);
+
+  if (currentWorkElt[0].likes === originalWorkEltLikes[0].likes) {
+    //adding +1 likes
+    currentWorkElt[0].likes += 1;
+    //display likes
+    likeId.childNodes[0].nodeValue = currentWorkElt[0].likes;
+    //modify style of heart after click
+    likeId.childNodes[1].setAttribute("class", "fas fa-heart");
+  } else if (currentWorkElt[0].likes === originalWorkEltLikes[0].likes + 1) {
+    //removing 1 likes
+    currentWorkElt[0].likes = originalWorkEltLikes[0].likes;
+    //display likes
+    likeId.childNodes[0].nodeValue = currentWorkElt[0].likes;
+    //modify style of heart after click
+    likeId.childNodes[1].setAttribute("class", "far fa-heart");
+  }
+
+  updateTotalLikes(totalLikes);
+}
+
 /**********************************************************
  *          Keyboard navigation on heart Element
  *********************************************************/
@@ -545,18 +605,16 @@ const keyboardHeartNav = (e, totalLikes) => {
   }
 };
 
-/**********************************************************
- *    Function to increment Likes
- **********************************************************/
-
-function incrementLikes(e, totalLikes) {
-  //get id of work element
-  const id = parseInt(e.target.parentElement.id);
-  const likeId = document.getElementById(id);
-  let likes = parseInt(likeId.innerText);
-  likes += 1;
-  likeId.innerHTML = likes + '<span class="fas fa-heart" aria-label="likes" role="button" tabindex="0"></span>';
-  updateTotalLikes(totalLikes);
+function listeningHeartPress(totalLikes) {
+  $heartLink = document.querySelectorAll("span.fa-heart");
+  $heartLink.forEach((item) => {
+    item.addEventListener("keydown", (e) => {
+      keyboardHeartNav(e, totalLikes);
+    });
+    item.addEventListener("click", (e) => {
+      incrementLikes(e, totalLikes);
+    });
+  });
 }
 
 /**********************************************************
@@ -611,6 +669,11 @@ function RenderPhotographerWorkOverview() {
     $workElts = document.querySelector(".works-elts");
     $workElts.addEventListener("keydown", keyboardWorkNav);
 
+    /************************************************************************************
+     *  Eventlistener on Keyboard Press or Click to increment Likes and TotalLikes
+     *************************************************************************************/
+    listeningHeartPress(totalLikes);
+
     /*******************************************************************
      * SORT LI ELEMENT FUNCTION FOR PHOTOGRAPHER WORK
      *******************************************************************/
@@ -627,6 +690,11 @@ function RenderPhotographerWorkOverview() {
       deleteGallery();
       //sort data by likes descending order
       sortByLikes();
+      //modify title into dropdownBtn
+      modifyDropdownBtnTitle("Popularité");
+      //modify likes after sorting
+      updateTotalLikes(totalLikes);
+      listeningHeartPress(totalLikes);
     });
     $dateSortLi.addEventListener("click", (e) => {
       e.preventDefault();
@@ -636,6 +704,11 @@ function RenderPhotographerWorkOverview() {
       deleteGallery();
       //sort data by date recent to old
       sortByDate();
+      //modify title into dropdownBtn
+      modifyDropdownBtnTitle("Date");
+      //modify likes after sorting
+      updateTotalLikes(totalLikes);
+      listeningHeartPress(totalLikes);
     });
     $titleSortLI.addEventListener("click", (e) => {
       e.preventDefault();
@@ -645,6 +718,11 @@ function RenderPhotographerWorkOverview() {
       deleteGallery();
       //sort data by title
       sortByTitle();
+      //modify title into dropdownBtn
+      modifyDropdownBtnTitle("Titre");
+      //modify likes after sorting
+      updateTotalLikes(totalLikes);
+      listeningHeartPress(totalLikes);
     });
 
     /******************************************************************************
@@ -652,19 +730,6 @@ function RenderPhotographerWorkOverview() {
      *****************************************************************************/
     $alink = document.querySelectorAll("a > img, video");
     $alink.forEach((item) => item.addEventListener("keydown", keyboardWorkNav));
-
-    /************************************************************************************
-     *  Eventlistener on Keyboard Press or Click to increment Likes and TotalLikes
-     *************************************************************************************/
-    $heartLink = document.querySelectorAll("span.fa-heart");
-    $heartLink.forEach((item) => {
-      item.addEventListener("keydown", (e) => {
-        keyboardHeartNav(e, totalLikes);
-      });
-      item.addEventListener("click", (e) => {
-        incrementLikes(e, totalLikes);
-      });
-    });
   }
 }
 
@@ -678,6 +743,9 @@ fetch(`${urlGithub}/Json.json`)
   .then((res) => res.json())
   .then((data) => {
     dataBase = data;
+    originalLikesFromJson = dataBase.media.map((item) => {
+      return { id: item.id, likes: item.likes };
+    });
 
     renderHomePage();
 
