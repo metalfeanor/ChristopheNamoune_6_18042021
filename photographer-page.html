@@ -14,7 +14,7 @@
     <title>Photographer FishEye</title>
   </head>
   <body>
-    <header class="header" role="banner">
+    <header class="header">
       <a aria-label="FishEye" href="index.html" class="header-svg">
         <svg
           version="1.1"
@@ -61,25 +61,23 @@
 
     <!-- CREATOR PAGE-->
     <main class="photographer-page" id="photographer-page" aria-hidden="false">
-
-  <!-- FORM -->
+      <!-- FORM -->
       <div class="overlay" id="overlay" aria-hidden="true"></div>
       <div role="dialog" class="form-dialog" id="form-body" aria-label="contact me form" aria-labelledby="form-title" aria-hidden="true">
         <form method="GET" onsubmit="return validate(event);" class="contact-form" id="contact-form">
           <header aria-label="contact form header">
             <h1 id="form-title">
-              <span>Contactez-moi</span></br>
+              <span>Contactez-moi</span>
               <span class="ph-form-name" id="ph-form-name"></span>
             </h1>
-            <button id="close-btn" title="Close Contact form" type="button">&#215
-            </button>
+            <button id="close-btn" title="Close Contact form" type="button">&#215;</button>
           </header>
 
           <label for="first-name" id="label-firstname">Prénom</label>
-          <input type="text" name="first-name" id="first-name" aria-labelledby="label-firstname" minlength="2" required/>
+          <input type="text" name="first-name" id="first-name" aria-labelledby="label-firstname" minlength="2" required />
 
           <label for="last-name" id="label-lastname">Nom</label>
-          <input type="text" name="last-name" id="last-name" aria-labelledby="label-lastname" minlength="2" required/>
+          <input type="text" name="last-name" id="last-name" aria-labelledby="label-lastname" minlength="2" required />
 
           <label for="email" id="label-email">Email</label>
           <input type="email" name="email" id="email" aria-labelledby="label-email" required />
@@ -98,14 +96,14 @@
           <div id="lightbox-content"></div>
         </div>
         <button type="button" class="lightbox-close" id="lightbox-close" title="Close dialog">
-            <span class="fas fa-times" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="lightbox-nav lightbox-left" id="lightbox-prev" title="Previous image">
-            <span class="fas fa-chevron-left" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="lightbox-nav lightbox-right" id="lightbox-next" title="Next image">
-            <span class="fas fa-chevron-right" aria-hidden="true"></span>
-          </button>
+          <span class="fas fa-times" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="lightbox-nav lightbox-left" id="lightbox-prev" title="Previous image">
+          <span class="fas fa-chevron-left" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="lightbox-nav lightbox-right" id="lightbox-next" title="Next image">
+          <span class="fas fa-chevron-right" aria-hidden="true"></span>
+        </button>
       </div>
     </main>
 

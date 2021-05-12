@@ -108,7 +108,7 @@ button {
   }
 }
 .contact-form h1 :nth-child(1) {
-  width: 100%;
+  display: block;
 }
 .contact-form label {
   font-size: 2em;
@@ -234,7 +234,6 @@ button {
   cursor: pointer;
 }
 .sort-list > li:nth-child(1) {
-  display: flex;
   display: flex;
   align-items: center;
   justify-content: space-between;
