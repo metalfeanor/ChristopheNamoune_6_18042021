@@ -14,6 +14,9 @@
       margin: 0;
       padding: 3% 8% 3% 9%;
     }
+    @media (min-width: 990px) {
+      padding-left: 100px;
+    }
     & > img {
       @include img-css;
       margin-left: auto;

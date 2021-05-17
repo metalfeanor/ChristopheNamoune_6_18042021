@@ -570,6 +570,11 @@ button {
     padding: 3% 8% 3% 9%;
   }
 }
+@media (min-width: 990px) {
+  .ph-header {
+    padding-left: 100px;
+  }
+}
 .ph-header > img {
   height: 100px;
   width: 100px;
