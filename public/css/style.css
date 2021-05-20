@@ -218,7 +218,7 @@ button {
   display: none;
   list-style: none;
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   top: -38px;
   left: 95px;
   width: 170px;
@@ -256,7 +256,7 @@ button {
   width: 100vw;
   max-width: 1250px;
   height: 100vh;
-  z-index: 2;
+  z-index: 3;
   display: none;
 }
 .lightbox-media {
@@ -350,7 +350,7 @@ button {
   width: 100%;
   height: 100%;
   background: #fff;
-  z-index: 1;
+  z-index: 2;
   display: none;
 }
 
